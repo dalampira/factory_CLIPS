@@ -1,0 +1,225 @@
+; Wed Dec 11 12:34:59 EET 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot specific_gravity
+		(type SYMBOL)
+		(allowed-values equal_to_1 above_1 below_1)
+		(default equal_to_1)
+		(create-accessor read-write))
+	(multislot pH-low
+		(type INTEGER)
+		(range 0 14)
+		(create-accessor read-write))
+	(multislot downstream
+		(type INSTANCE)
+;+		(allowed-classes node)
+		(create-accessor read-write))
+	(multislot pH-high
+		(type INTEGER)
+		(range 0 14)
+		(create-accessor read-write))
+	(multislot solubility
+		(type SYMBOL)
+		(allowed-values soluble insoluble)
+		(default soluble)
+		(create-accessor read-write))
+	(multislot colour
+		(type SYMBOL)
+		(allowed-values clear red white)
+		(default clear)
+		(create-accessor read-write))
+	(multislot radioactivity
+		(type SYMBOL)
+		(allowed-values no yes)
+		(default no)
+		(create-accessor read-write))
+	(multislot smell
+		(type SYMBOL)
+		(allowed-values none vinegar choking)
+		(default none)
+		(create-accessor read-write))
+	(multislot hazards
+		(type SYMBOL)
+		(allowed-values asphyxiation burns_skin explosive highly_toxic_PCBs)
+		(create-accessor read-write))
+	(multislot contents
+		(type INSTANCE)
+;+		(allowed-classes chemical)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(multislot spectrometry
+		(type SYMBOL)
+		(allowed-values none sulphur carbon sodium metal)
+		(default none)
+		(create-accessor read-write)))
+
+(defclass chemical
+	(is-a USER)
+	(role concrete)
+	(multislot colour
+		(type SYMBOL)
+		(allowed-values clear red white)
+		(default clear)
+		(create-accessor read-write))
+	(multislot specific_gravity
+		(type SYMBOL)
+		(allowed-values equal_to_1 above_1 below_1)
+		(default equal_to_1)
+		(create-accessor read-write))
+	(multislot radioactivity
+		(type SYMBOL)
+		(allowed-values no yes)
+		(default no)
+		(create-accessor read-write))
+	(multislot pH-high
+		(type INTEGER)
+		(range 0 14)
+		(create-accessor read-write))
+	(multislot pH-low
+		(type INTEGER)
+		(range 0 14)
+		(create-accessor read-write))
+	(multislot solubility
+		(type SYMBOL)
+		(allowed-values soluble insoluble)
+		(default soluble)
+		(create-accessor read-write))
+	(multislot smell
+		(type SYMBOL)
+		(allowed-values none vinegar choking)
+		(default none)
+		(create-accessor read-write))
+	(multislot hazards
+		(type SYMBOL)
+		(allowed-values asphyxiation burns_skin explosive highly_toxic_PCBs)
+		(create-accessor read-write))
+	(multislot spectrometry
+		(type SYMBOL)
+		(allowed-values none sulphur carbon sodium metal)
+		(default none)
+		(create-accessor read-write)))
+
+(defclass acid
+	(is-a chemical)
+	(role concrete)
+	(multislot pH-high
+		(type INTEGER)
+		(range 0 14)
+		(default 6)
+		(create-accessor read-write))
+	(multislot pH-low
+		(type INTEGER)
+		(range 0 14)
+		(default 0)
+		(create-accessor read-write)))
+
+(defclass strong_acid
+	(is-a acid)
+	(role concrete)
+	(multislot pH-high
+		(type INTEGER)
+		(range 0 14)
+		(default 3)
+		(create-accessor read-write))
+	(multislot hazards
+		(type SYMBOL)
+		(allowed-values asphyxiation burns_skin explosive highly_toxic_PCBs)
+		(default burns_skin)
+		(create-accessor read-write)))
+
+(defclass weak_acid
+	(is-a acid)
+	(role concrete)
+	(multislot pH-low
+		(type INTEGER)
+		(range 0 14)
+		(default 3)
+		(create-accessor read-write)))
+
+(defclass base
+	(is-a chemical)
+	(role concrete)
+	(multislot pH-high
+		(type INTEGER)
+		(range 0 14)
+		(default 14)
+		(create-accessor read-write))
+	(multislot pH-low
+		(type INTEGER)
+		(range 0 14)
+		(default 8)
+		(create-accessor read-write)))
+
+(defclass strong_base
+	(is-a base)
+	(role concrete)
+	(multislot pH-low
+		(type INTEGER)
+		(range 0 14)
+		(default 11)
+		(create-accessor read-write))
+	(multislot hazards
+		(type SYMBOL)
+		(allowed-values asphyxiation burns_skin explosive highly_toxic_PCBs)
+		(default burns_skin)
+		(create-accessor read-write)))
+
+(defclass weak_base
+	(is-a base)
+	(role concrete)
+	(multislot pH-high
+		(type INTEGER)
+		(range 0 14)
+		(default 11)
+		(create-accessor read-write)))
+
+(defclass oil
+	(is-a chemical)
+	(role concrete)
+	(multislot pH-high
+		(type INTEGER)
+		(range 0 14)
+		(default 8)
+		(create-accessor read-write))
+	(multislot pH-low
+		(type INTEGER)
+		(range 0 14)
+		(default 6)
+		(create-accessor read-write))
+	(multislot solubility
+		(type SYMBOL)
+		(allowed-values soluble insoluble)
+		(default insoluble)
+		(create-accessor read-write))
+	(multislot spectrometry
+		(type SYMBOL)
+		(allowed-values none sulphur carbon sodium metal)
+		(default carbon)
+		(create-accessor read-write)))
+
+(defclass node
+	(is-a USER)
+	(role concrete)
+	(multislot downstream
+		(type INSTANCE)
+;+		(allowed-classes node)
+		(create-accessor read-write)))
+
+(defclass store
+	(is-a node)
+	(role concrete)
+	(multislot contents
+		(type INSTANCE)
+;+		(allowed-classes chemical)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write)))
+
+(defclass manhole
+	(is-a node)
+	(role concrete))
