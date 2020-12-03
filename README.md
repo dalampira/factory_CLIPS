@@ -1,7 +1,7 @@
 # factory_CLIPS
 
 A chemical company has a problem locating the source of chemical contaminants in its factory. 
-The following chemicals are kept in the factory:Sulphuric acid, Hydrochloric acid, Acetic acid, Carbonic acid, Sodium hydroxide, Chromogen 23,Aluminium hydroxide, 
+The following chemicals are kept in the factory: Sulphuric acid, Hydrochloric acid, Acetic acid, Carbonic acid, Sodium hydroxide, Chromogen 23,Aluminium hydroxide, 
 Rubidium hydroxide, Petrol,Transformer oil.
 
 The above chemicals belong to one of the 3 categories: acids, bases and oils.
